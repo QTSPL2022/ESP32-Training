@@ -1,4 +1,4 @@
-int rellay =15;
+int relay =15;
 
 int ldr = 36;
 int value = 0;
@@ -7,7 +7,7 @@ int value = 0;
 void setup() 
 {
   pinMode(ldr, INPUT);
-  pinMode(rellay, OUTPUT);
+  pinMode(relay, OUTPUT);
   Serial.begin(9600);
   
 }
@@ -18,13 +18,13 @@ void loop()
   Serial.println(value);
    if( value >500)
   {
-    digitalWrite(rellay, LOW);
+    digitalWrite(relay, LOW);
   }
   
 
    else
    {
-    digitalWrite(rellay, HIGH);
+    digitalWrite(relay, HIGH);
     }
   
 
