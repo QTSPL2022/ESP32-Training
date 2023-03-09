@@ -1,48 +1,35 @@
-int echo = 23;
-int trig = 22;
-int led1 = 15;
-int led2 = 4;
-int led3 = 16;
-int led4 = 17;
-const int fix = 50;
-float duration, distance,objdis;
 
-void setup() 
-{
-  Serial.begin(9600);
-  pinMode(trig, OUTPUT);
-  pinMode(echo, INPUT);
-  pinMode(led1, OUTPUT);
-  pinMode(led2, OUTPUT);
-  pinMode(led3, OUTPUT);
-  pinMode(led4, OUTPUT);
-  
+#define TRIG_PIN 23 // ESP32 pin GIOP23 connected to Ultrasonic Sensor's TRIG pin
+#define ECHO_PIN 22 // ESP32 pin GIOP22 connected to Ultrasonic Sensor's ECHO pin
+
+float duration_us, distance_cm;
+
+void setup() {
+  // begin serial port
+  Serial.begin (9600);
+
+  // configure the trigger pin to output mode
+  pinMode(TRIG_PIN, OUTPUT);
+  // configure the echo pin to input mode
+  pinMode(ECHO_PIN, INPUT);
 }
 
-void loop() 
-{
-  digitalWrite(trig, HIGH);
-  delay(10);
-  digitalWrite(trig, LOW);;
+void loop() {
+  // generate 10-microsecond pulse to TRIG pin
+  digitalWrite(TRIG_PIN, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(TRIG_PIN, LOW);
 
-  duration = pulseIn(echo,HIGH);
-  distance = 0.017 * duration;
-  if (distance<fix)
-  {
-    objdis = fix-distance;
-    Serial.print("Object distance =  ");
-    Serial.print(objdis);
-    Serial.print("cm\n");
-    delay(500);
-    }
+  // measure duration of pulse from ECHO pin
+  duration_us = pulseIn(ECHO_PIN, HIGH);
 
-   else if(distance>fix)
-   {
-    Serial.print("0cm \n");
-    delay(500);
-    }
+  // calculate the distance
+  distance_cm = 0.017 * duration_us;
 
-   
-  
+  // print the value to Serial Monitor
+  Serial.print("distance: ");
+  Serial.print(distance_cm);
+  Serial.println(" cm");
 
+  delay(500);
 }
