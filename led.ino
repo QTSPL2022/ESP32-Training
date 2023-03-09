@@ -1,7 +1,7 @@
 const int L1=16, L2=17, L3=5, L4=18;	//initializing LED pins
 void setup()
 {
-pinMode(L1, OUTPUT);	// Set all Port P2 pins as output pinMode(L2, OUTPUT);
+pinMode(L1, OUTPUT);	// Set all Port pins as output 
 pinMode(L2, OUTPUT); 
 pinMode(L3, OUTPUT); 
 pinMode(L4, OUTPUT); 
