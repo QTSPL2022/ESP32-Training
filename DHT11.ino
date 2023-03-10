@@ -1,10 +1,3 @@
-/*
- * This ESP32 code is created by esp32io.com
- *
- * This ESP32 code is released in the public domain
- *
- * For more detail (instruction and wiring diagram), visit https://esp32io.com/tutorials/esp32-temperature-humidity-sensor
- */
 
 #include <DHT.h>
 #define DHT_SENSOR_PIN  21 // ESP32 pin GIOP21 connected to DHT11 sensor
